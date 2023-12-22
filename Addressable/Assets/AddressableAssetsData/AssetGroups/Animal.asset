@@ -17,19 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 437d8520553043f4098dfe573da0c926
   m_SerializeEntries:
-  - m_GUID: 49cf37942b99b004190dc7c41aaab6fd
-    m_Address: deer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6672bb0f21918b64698c51dd1ce53543
     m_Address: Hydrochoerus hydrochaeris
     m_ReadOnly: 0
     m_SerializedLabels:
     - HH
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 57926b3253490384d9e730dd94addcdf
-    m_Address: Tiger
+  - m_GUID: 49cf37942b99b004190dc7c41aaab6fd
+    m_Address: deer
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

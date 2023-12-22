@@ -8,25 +8,28 @@ using UnityEngine.UI;
 public class Example : MonoBehaviour
 {
     [SerializeField]
-    //°Êª«·Ó¤ù
+    //å‹•ç‰©ç…§ç‰‡
     private Image _AnimalImage;
 
     [SerializeField]
-    //Åª¨ú²Ä´X¦ì°Êª«
+    //è®€å–ç¬¬å¹¾ä½å‹•ç‰©
     private int _LoadIndex = 0;
 
     [SerializeField]
     private bool _LoadAnimal = false;
 
+    [SerializeField]
+    private int _MaxImageCount = 2;
+
     /// <summary>
-    /// Åª¨úÀÉ®×
+    /// è®€å–æª”æ¡ˆ
     /// </summary>
     private void LoadAsset(int loadIndex)
     {
         switch(loadIndex)
         {
             case 0:
-                //CallBack   //Åª¨úAddressableName
+                //CallBack   //è®€å–AddressableName
                 Addressables.LoadAssetAsync<Texture>("deer").Completed += Load_Complete =>
                 {
                     Texture texture = Load_Complete.Result;
@@ -35,24 +38,12 @@ public class Example : MonoBehaviour
 
                     // Assign the sprite to the Image component
                     _AnimalImage.sprite = sprite;
-                    _AnimalImage.SetNativeSize();
+                    //_AnimalImage.SetNativeSize();
                 };
                 break;
             case 1:
-                //³]©wCallBack   Åª¨úLabel
+                //è¨­å®šCallBack   è®€å–Label
                 Addressables.LoadAssetAsync<Texture>("HH").Completed += CallBack_Load_Complete;
-                break;
-            case 2://Åª¨úResources©³¤UªºÀÉ®×
-                Addressables.LoadAssetAsync<Texture>("Image/Tiger.png").Completed += Load_Complete =>
-                {
-                    Texture texture = Load_Complete.Result;
-                    // Create a sprite from the loaded texture
-                    Sprite sprite = Sprite.Create((Texture2D)texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-
-                    // Assign the sprite to the Image component
-                    _AnimalImage.sprite = sprite;
-                    _AnimalImage.SetNativeSize();
-                };
                 break;
         }
     }
@@ -65,7 +56,21 @@ public class Example : MonoBehaviour
 
         // Assign the sprite to the Image component
         _AnimalImage.sprite = sprite;
-        _AnimalImage.SetNativeSize();
+        //_AnimalImage.SetNativeSize();
+    }
+
+    private void Start()
+    {
+        LoadAsset(0);
+    }
+
+    public void loadNextPic()
+    {
+        _LoadIndex++;
+        if (_LoadIndex >= _MaxImageCount)
+            _LoadIndex = 0;
+
+        LoadAsset(_LoadIndex);
     }
 
     // Update is called once per frame
